@@ -43,12 +43,12 @@ export async function processReward(userId: string, newStreak: number): Promise<
 
   // 10 days: Handsome guy photo
   if (newStreak === 10) {
-    newImage = await generateRewardImage("A very handsome, zen-like young man with short hair, wearing simple organic linen clothes, peaceful expression, soft natural lighting, high quality photography.");
+    newImage = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=500";
   }
 
   // 15 days: Photo with companion
   if (newStreak === 15) {
-    newImage = await generateRewardImage("A cinematic photo of a peaceful meditation scene with a handsome zen master and a shadow/silhouette representing the user, glowing light, ethereal atmosphere.");
+    newImage = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=500";
   }
 
   const updates: any = {
