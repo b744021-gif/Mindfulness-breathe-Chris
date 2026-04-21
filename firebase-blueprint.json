@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserSession": {
+      "title": "User Session",
+      "description": "Records of mindfulness breathing sessions",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "duration": { "type": "number" },
+        "date": { "type": "string", "format": "date" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "mood": { "type": "string" }
+      },
+      "required": ["userId", "duration", "date", "timestamp"]
+    },
+    "Message": {
+      "title": "Board Message",
+      "description": "Public messages left on the heart-mood board",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "content": { "type": "string" },
+        "mood": { "type": "string" },
+        "likes": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "userName", "content", "timestamp"]
+    },
+    "UserStats": {
+      "title": "User Statistics",
+      "description": "User streak, coins and rewards",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "streak": { "type": "number" },
+        "coins": { "type": "number" },
+        "lastCheckIn": { "type": "string", "format": "date" },
+        "unlockedImages": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["userId", "streak", "coins"]
+    },
+    "Presence": {
+      "title": "User Presence",
+      "description": "Detects who is online breathing now",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "lastSeen": { "type": "string", "format": "date-time" },
+        "isBreathing": { "type": "boolean" }
+      },
+      "required": ["userId", "userName", "lastSeen"]
+    }
+  },
+  "firestore": {
+    "sessions/{sessionId}": {
+      "schema": "UserSession",
+      "description": "User breathing history"
+    },
+    "messages/{messageId}": {
+      "schema": "Message",
+      "description": "Public messages on the mood board"
+    },
+    "userStats/{userId}": {
+      "schema": "UserStats",
+      "description": "Aggregated user stats"
+    },
+    "presence/{userId}": {
+      "schema": "Presence",
+      "description": "Online presence tracking"
+    }
+  }
+}
